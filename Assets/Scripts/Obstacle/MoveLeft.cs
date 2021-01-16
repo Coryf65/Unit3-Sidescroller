@@ -7,7 +7,7 @@ namespace Cory.Sidescroller.Obstacle
     public class MoveLeft : MonoBehaviour
     {
 
-        [SerializeField] private float speed = 10f;
+        private float speed = 20f; // sync across all
 
         // Update is called once per frame
         void Update()
