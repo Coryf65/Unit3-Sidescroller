@@ -9,9 +9,11 @@ namespace Cory.Sidescroller.Player
 
         public float jumpForce = 10f;
         public float gravityModifier = 1;
-        
+        public bool isGameOver = false;
+
         private Rigidbody playerRb = null;
         private bool isOnGround = true;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -34,7 +36,19 @@ namespace Cory.Sidescroller.Player
 
         private void OnCollisionEnter(Collision collision)
         {
-            isOnGround = true;
+
+            // Check if we collide with an obstacle
+            if (collision.gameObject.CompareTag("Obstacle"))
+            {
+                // gameover
+                Debug.LogWarning("Game is Over!");
+                isGameOver = true;
+
+            } else if (collision.gameObject.CompareTag("Ground"))
+            {
+                isOnGround = true;
+            }
+
         }
     }
 }
