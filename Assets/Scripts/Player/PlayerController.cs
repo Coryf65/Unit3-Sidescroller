@@ -13,6 +13,7 @@ namespace Cory.Sidescroller.Player
 
         private Rigidbody playerRb = null;
         private Animator playerAnimator = null;
+        private Ragdoll ragdoll = null;
         private bool isOnGround = true;
         
 
@@ -21,6 +22,7 @@ namespace Cory.Sidescroller.Player
         {
             playerRb = GetComponent<Rigidbody>();
             playerAnimator = GetComponent<Animator>();
+            ragdoll = GetComponent<Ragdoll>();
             Physics.gravity *= gravityModifier;
 
         }
@@ -47,7 +49,8 @@ namespace Cory.Sidescroller.Player
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
-                // stop moving left
+                // ragdoll player
+                ragdoll.ToggleRagdoll(true);
 
             } else if (collision.gameObject.CompareTag("Ground"))
             {
