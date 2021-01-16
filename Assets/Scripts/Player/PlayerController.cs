@@ -43,6 +43,7 @@ namespace Cory.Sidescroller.Player
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
+                // stop moving left
 
             } else if (collision.gameObject.CompareTag("Ground"))
             {
