@@ -11,6 +11,7 @@ namespace Cory.Sidescroller.Player
         public float gravityModifier = 1;
         
         private Rigidbody playerRb = null;
+        private bool isOnGround = true;
 
         // Start is called before the first frame update
         void Start()
@@ -23,12 +24,17 @@ namespace Cory.Sidescroller.Player
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
             {
                 // Instant Jump!
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
+                isOnGround = false;
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            isOnGround = true;
         }
     }
 }
