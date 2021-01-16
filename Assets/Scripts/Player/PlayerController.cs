@@ -7,12 +7,16 @@ namespace Cory.Sidescroller.Player
     public class PlayerController : MonoBehaviour
     {
 
+        public float jumpForce = 10f;
+        public float gravityModifier = 1;
+        
         private Rigidbody playerRb = null;
 
         // Start is called before the first frame update
         void Start()
         {
             playerRb = GetComponent<Rigidbody>();
+            Physics.gravity *= gravityModifier;
 
         }
 
@@ -22,7 +26,7 @@ namespace Cory.Sidescroller.Player
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Instant Jump!
-                playerRb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             }
         }
