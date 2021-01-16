@@ -14,14 +14,17 @@ namespace Cory.Sidescroller.Player
         {
             playerRb = GetComponent<Rigidbody>();
 
-            // for testing 
-            playerRb.AddForce(Vector3.up * 1000);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Instant Jump!
+                playerRb.AddForce(Vector3.up * 10, ForceMode.Impulse);
 
+            }
         }
     }
 }
