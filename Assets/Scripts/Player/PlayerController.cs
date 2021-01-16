@@ -12,6 +12,7 @@ namespace Cory.Sidescroller.Player
         public bool isGameOver = false;
 
         private Rigidbody playerRb = null;
+        private Animator playerAnimator = null;
         private bool isOnGround = true;
         
 
@@ -19,6 +20,7 @@ namespace Cory.Sidescroller.Player
         void Start()
         {
             playerRb = GetComponent<Rigidbody>();
+            playerAnimator = GetComponent<Animator>();
             Physics.gravity *= gravityModifier;
 
         }
@@ -29,6 +31,8 @@ namespace Cory.Sidescroller.Player
             if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
             {
                 // Instant Jump!
+                playerAnimator.SetTrigger("Jump_trig"); // do jumping animation
+
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
             }
