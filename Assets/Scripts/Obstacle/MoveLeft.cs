@@ -9,6 +9,7 @@ namespace Cory.Sidescroller.Obstacle
     {
         private float speed = 20f; // sync across all
         private PlayerController playerController = null;
+        private float boundryLine = -10; // the boundry point left
 
         private void Start()
         {
@@ -21,6 +22,11 @@ namespace Cory.Sidescroller.Obstacle
             if (!playerController.isGameOver)
             {
                 transform.Translate(Vector3.left * Time.deltaTime * speed); // moves the object over time
+            }
+
+            if (gameObject.CompareTag("Obstacle") && transform.position.x < boundryLine)
+            {
+                Destroy(gameObject);
             }
 
         }
