@@ -33,10 +33,9 @@ namespace Cory.Sidescroller.Player
             if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
             {
                 // Instant Jump!
-                playerAnimator.SetTrigger("Jump_trig"); // do jumping animation
-
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
+                playerAnimator.SetTrigger("Jump_trig"); // do jumping animation
             }
         }
 
@@ -49,8 +48,8 @@ namespace Cory.Sidescroller.Player
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
-                // ragdoll player
-                ragdoll.ToggleRagdoll(true);
+                playerAnimator.SetBool("Death_b", true); // toggle death anim
+                playerAnimator.SetInteger("DeathType_int", 1);
 
             } else if (collision.gameObject.CompareTag("Ground"))
             {
