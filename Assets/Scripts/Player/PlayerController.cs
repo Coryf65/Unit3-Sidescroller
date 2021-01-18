@@ -30,7 +30,7 @@ namespace Cory.Sidescroller.Player
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !isGameOver)
             {
                 // Instant Jump!
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
