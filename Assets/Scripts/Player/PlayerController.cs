@@ -10,7 +10,8 @@ namespace Cory.Sidescroller.Player
         public float jumpForce = 10f;
         public float gravityModifier = 1;
         public bool isGameOver = false;
-        public ParticleSystem eplosionParticles = null;
+        public ParticleSystem explosionParticles = null;
+        public ParticleSystem dirtParticles = null;
 
         private Rigidbody playerRb = null;
         private Animator playerAnimator = null;
@@ -37,6 +38,7 @@ namespace Cory.Sidescroller.Player
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 playerAnimator.SetTrigger("Jump_trig"); // do jumping animation
+                dirtParticles.Stop();
             }
         }
 
@@ -46,9 +48,9 @@ namespace Cory.Sidescroller.Player
             // Check if we collide with an obstacle
             if (collision.gameObject.CompareTag("Obstacle"))
             {
-                // play explosion particles
-                eplosionParticles.Play();
-
+                // play particles
+                explosionParticles.Play();
+                dirtParticles.Stop();
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
@@ -57,6 +59,7 @@ namespace Cory.Sidescroller.Player
 
             } else if (collision.gameObject.CompareTag("Ground"))
             {
+                dirtParticles.Play();
                 isOnGround = true;
             }
 
