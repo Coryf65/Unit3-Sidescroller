@@ -203,6 +203,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb7cd9b0c56a24d49a40784bd3203ae6, type: 3}
+--- !u!198 &62685872 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9125212449759046732, guid: cb7cd9b0c56a24d49a40784bd3203ae6,
+    type: 3}
+  m_PrefabInstance: {fileID: 62685871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +627,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 022cd8e9b1d113b41905bcb401343e62, type: 2}
+    - target: {fileID: 1077623203, guid: fc01a3bb589cebc4aa10892db165243b, type: 3}
+      propertyPath: eplosionParticles
+      value: 
+      objectReference: {fileID: 62685872}
     - target: {fileID: 1077623204, guid: fc01a3bb589cebc4aa10892db165243b, type: 3}
       propertyPath: m_IsKinematic
       value: 0

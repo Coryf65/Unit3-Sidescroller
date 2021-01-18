@@ -10,6 +10,7 @@ namespace Cory.Sidescroller.Player
         public float jumpForce = 10f;
         public float gravityModifier = 1;
         public bool isGameOver = false;
+        public ParticleSystem eplosionParticles = null;
 
         private Rigidbody playerRb = null;
         private Animator playerAnimator = null;
@@ -45,6 +46,9 @@ namespace Cory.Sidescroller.Player
             // Check if we collide with an obstacle
             if (collision.gameObject.CompareTag("Obstacle"))
             {
+                // play explosion particles
+                eplosionParticles.Play();
+
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
