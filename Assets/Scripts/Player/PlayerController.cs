@@ -12,10 +12,12 @@ namespace Cory.Sidescroller.Player
         public bool isGameOver = false;
         public ParticleSystem explosionParticles = null;
         public ParticleSystem dirtParticles = null;
+        public AudioClip jumpClip = null;
+        public AudioClip crashClip = null;
 
+        private AudioSource playerAudioSource = null;
         private Rigidbody playerRb = null;
         private Animator playerAnimator = null;
-        private Ragdoll ragdoll = null;
         private bool isOnGround = true;
         
 
@@ -24,7 +26,7 @@ namespace Cory.Sidescroller.Player
         {
             playerRb = GetComponent<Rigidbody>();
             playerAnimator = GetComponent<Animator>();
-            ragdoll = GetComponent<Ragdoll>();
+            playerAudioSource = GetComponent<AudioSource>();
             Physics.gravity *= gravityModifier;
 
         }
@@ -39,6 +41,7 @@ namespace Cory.Sidescroller.Player
                 isOnGround = false;
                 playerAnimator.SetTrigger("Jump_trig"); // do jumping animation
                 dirtParticles.Stop();
+                playerAudioSource.PlayOneShot(jumpClip, 1.0f); // play sound clip one time, at full volume
             }
         }
 
@@ -51,13 +54,15 @@ namespace Cory.Sidescroller.Player
                 // play particles
                 explosionParticles.Play();
                 dirtParticles.Stop();
+                playerAudioSource.PlayOneShot(crashClip, 1.0f); // play sound clip one time, at full volume
                 // gameover
                 Debug.LogWarning("Game is Over!");
                 isGameOver = true;
                 playerAnimator.SetBool("Death_b", true); // toggle death anim
                 playerAnimator.SetInteger("DeathType_int", 1);
 
-            } else if (collision.gameObject.CompareTag("Ground"))
+            }
+            else if (collision.gameObject.CompareTag("Ground"))
             {
                 dirtParticles.Play();
                 isOnGround = true;

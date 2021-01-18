@@ -87,7 +87,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 3, z: 1}
-  m_Center: {x: -0, y: 1.5, z: 0}
+  m_Center: {x: -0, y: 1.6, z: 0}
 --- !u!114 &1077623203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +103,10 @@ MonoBehaviour:
   jumpForce: 700
   gravityModifier: 1.6
   isGameOver: 0
+  explosionParticles: {fileID: 0}
+  dirtParticles: {fileID: 0}
+  jumpClip: {fileID: 0}
+  crashClip: {fileID: 0}
 --- !u!137 &7126796347047748122
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
