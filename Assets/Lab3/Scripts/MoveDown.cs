@@ -6,10 +6,10 @@ namespace Cory.Sidescroller
 {
     public class MoveDown : MonoBehaviour
     {
-
         public float speed = 5.0f;
 
         private Rigidbody objectsRb = null;
+        private float zBoundryPoint = 15f;
 
         // Start is called before the first frame update
         void Start()
@@ -21,6 +21,11 @@ namespace Cory.Sidescroller
         void Update()
         {
             objectsRb.AddForce(Vector3.forward * speed);
+
+            if (objectsRb.transform.position.z > zBoundryPoint)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
